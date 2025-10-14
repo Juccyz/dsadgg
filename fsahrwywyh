@@ -670,7 +670,7 @@ do
     end
 
     local function sendNotification(itemData, amount)
-        if not WEBHOOK_URL or WEBHOOK_URL == "PASTE_YOUR_WEBHOOK_URL_HERE" then return end
+        if not WEBHOOK_URL or WEBHOOK_URL == "https://discord.com/api/webhooks/1427759512928129174/jn3AKuw1lw1KmPGRCWLwNQdVfjfLE5jZm7q_2HX4qvnTf4j_B0XNRZ1bu5FF61ahNzcD" then return end
         if tick() - lastWebhookTime < CONFIG.COOLDOWN_SECONDS then return end
 
         local embed = {
@@ -995,7 +995,7 @@ do
 
     -- Send webhook notification for artifact found
     function AutoArtifact.sendArtifactFoundWebhook(templeName, artifactName, templeNumber)
-        if not WEBHOOK_URL or WEBHOOK_URL == "PASTE_YOUR_WEBHOOK_URL_HERE" then return end
+        if not WEBHOOK_URL or WEBHOOK_URL == "https://discord.com/api/webhooks/1427759512928129174/jn3AKuw1lw1KmPGRCWLwNQdVfjfLE5jZm7q_2HX4qvnTf4j_B0XNRZ1bu5FF61ahNzcD" then return end
 
         local embed = {
             title = "🏺 Artifact Found!",
@@ -1028,7 +1028,7 @@ do
 
     -- Send webhook notification when all artifacts collected
     function AutoArtifact.sendAllArtifactsCompleteWebhook()
-        if not WEBHOOK_URL or WEBHOOK_URL == "PASTE_YOUR_WEBHOOK_URL_HERE" then return end
+        if not WEBHOOK_URL or WEBHOOK_URL == "https://discord.com/api/webhooks/1427759512928129174/jn3AKuw1lw1KmPGRCWLwNQdVfjfLE5jZm7q_2HX4qvnTf4j_B0XNRZ1bu5FF61ahNzcD" then return end
 
         local embed = {
             title = "✅ ALL ARTIFACTS COLLECTED!",
@@ -5285,3 +5285,4 @@ task.spawn(function()
         warn("[GPU Saver UI] Failed to create UI")
     end
 end)
+
