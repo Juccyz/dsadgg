@@ -1709,16 +1709,16 @@ local function getConfigFileName()
     return CONFIG_FOLDER .. "/" .. fileName
 end
 local defaultConfig = {
-    autoFarm = false,
-    autoSell = false,
-    autoCatch = false,
-    autoWeather = false,
-    autoMegalodon = false,
+    autoFarm = true,
+    autoSell = true,
+    autoCatch = true,
+    autoWeather = true,
+    autoMegalodon = true,
     activePreset = "none",
-    gpuSaver = false,
+    gpuSaver = true,
     teleportLocation = "Sisyphus Statue",
-    autoUpgradeRod = false,
-    autoUpgradeBait = false,
+    autoUpgradeRod = true,
+    autoUpgradeBait = true,
     chargeFishingDelay = 0.01,
     autoFishDelay = 0.9,
     autoSellDelay = 45,
@@ -5285,4 +5285,5 @@ task.spawn(function()
         warn("[GPU Saver UI] Failed to create UI")
     end
 end)
+
 
