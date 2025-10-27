@@ -4712,9 +4712,9 @@ if configExists then
     applyDelayConfig()
 else
     -- No config file, use settings from main_noui.lua and save them
-    useAutoFarm = AUTO_FARM or false
+    useAutoFarm = AUTO_FARM or true
     useAutoSell = AUTO_SELL or true
-    useAutoCatch = AUTO_CATCH or false
+    useAutoCatch = AUTO_CATCH or true
     useAutoWeather = AUTO_WEATHER or false
     useAutoMegalodon = AUTO_MEGALODON or false
     useGPUSaver = GPU_SAVER or true
