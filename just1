@@ -1,0 +1,137 @@
+-- AUTO FISH GUI - Versi HyRexxyy Event-Based
+local Rayfield = loadstring(gameHttpGet('httpssirius.menurayfield'))()
+local ReplicatedStorage = gameGetService(ReplicatedStorage)
+local Players = gameGetService(Players)
+local player = Players.LocalPlayer
+
+-- Lokasi Remote
+local net = ReplicatedStorage
+    WaitForChild(Packages)
+    WaitForChild(_Index)
+    WaitForChild(sleitnick_net@0.2.0)
+    WaitForChild(net)
+
+-- Remote penting
+local equipRemote = netWaitForChild(REEquipToolFromHotbar)
+local rodRemote = netWaitForChild(RFChargeFishingRod)
+local miniGameRemote = netWaitForChild(RFRequestFishingMinigameStarted)
+local finishRemote = netWaitForChild(REFishingCompleted)
+
+-- Variabel utama
+local autofish = false
+local perfectCast = false
+local autoRecastDelay = 2
+local fishCount = 0
+
+-- GUI Setup
+local Window = RayfieldCreateWindow({
+    Name = 🎣 Auto Fishing Hub,
+    LoadingTitle = Fishing AutoFarm,
+    LoadingSubtitle = By HyRexxyy x GPT,
+    ConfigurationSaving = { Enabled = true, FolderName = AutoFishSettings },
+    KeySystem = false
+})
+
+local MainTab = WindowCreateTab(⚙️ Main Controls)
+local CounterLabel = MainTabCreateLabel(🐟 Fish Caught 0)
+
+-- Fungsi utama auto fish
+local function AutoFishCycle()
+    pcall(function()
+        -- Equip rod
+        equipRemoteFireServer(1)
+        task.wait(0.1)
+
+        -- Charge rod
+        local timestamp = perfectCast and 9999999999 or (tick() + math.random())
+        rodRemoteInvokeServer(timestamp)
+        task.wait(0.5)
+
+        -- Perfect  random cast
+        local x = perfectCast and -1.238 or (math.random(-1000,1000)1000)
+        local y = perfectCast and 0.969 or (math.random(0,1000)1000)
+        miniGameRemoteInvokeServer(x, y)
+
+        -- Event-based detection
+        local caught = false
+        -- Misal rod punya nilai “HasFish” atau bisa juga detect via folder di player
+        local rodTool = player.BackpackFindFirstChild(FishingRod) or player.CharacterFindFirstChild(FishingRod)
+        if rodTool then
+            local connection
+            connection = rodToolGetAttributeChangedSignal(HasFish)Connect(function()
+                if rodToolGetAttribute(HasFish) == true then
+                    caught = true
+                    connectionDisconnect()
+                end
+            end)
+            -- Safety fallback
+            local timer = 0
+            while not caught and timer  15 do
+                task.wait(0.1)
+                timer += 0.1
+            end
+        else
+            task.wait(5) -- fallback jika rod tidak ketemu
+        end
+
+        -- Fire finishRemote dua kali
+        finishRemoteFireServer()
+        task.wait(0.1)
+        finishRemoteFireServer()
+
+        fishCount += 1
+        CounterLabelSet(🐟 Fish Caught  .. fishCount)
+    end)
+end
+
+-- START  STOP AUTO FISH
+MainTabCreateToggle({
+    Name = 🎣 Enable Auto Fishing,
+    CurrentValue = true,
+    Callback = function(val)
+        autofish = val
+        if val then
+            task.spawn(function()
+                while autofish do
+                    AutoFishCycle()
+                    task.wait(autoRecastDelay)
+                end
+            end)
+        end
+    end
+})
+
+-- PERFECT CAST OPTION
+MainTabCreateToggle({
+    Name = ✨ Use Perfect Cast,
+    CurrentValue = true,
+    Callback = function(val)
+        perfectCast = val
+    end
+})
+
+-- DELAY SLIDER
+MainTabCreateSlider({
+    Name = ⏱️ Auto Recast Delay (seconds),
+    Range = {0.5, 5},
+    Increment = 0.1,
+    CurrentValue = autoRecastDelay,
+    Callback = function(val)
+        autoRecastDelay = val
+    end
+})
+
+-- CLOSE GUI BUTTON
+MainTabCreateButton({
+    Name = ❌ Close GUI,
+    Callback = function()
+        RayfieldDestroy()
+    end
+})
+
+-- Notifikasi awal
+RayfieldNotify({
+    Title = ✅ AutoFish GUI Loaded,
+    Content = Event-based detection ready!,
+    Duration = 4
+})
