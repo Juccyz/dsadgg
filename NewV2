@@ -4713,7 +4713,7 @@ if configExists then
 else
     -- No config file, use settings from main_noui.lua and save them
     useAutoFarm = AUTO_FARM or false
-    useAutoSell = AUTO_SELL or false
+    useAutoSell = AUTO_SELL or true
     useAutoCatch = AUTO_CATCH or false
     useAutoWeather = AUTO_WEATHER or false
     useAutoMegalodon = AUTO_MEGALODON or false
