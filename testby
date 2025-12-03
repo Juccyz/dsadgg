@@ -2048,9 +2048,9 @@ local upgradeBaitToggle
 -- Urutan rod dan bait dari terburuk ke terbaik (index lebih besar = lebih bagus)
 upgradeState = { rod = false, bait = false }
 rodIDs = {80, 255, 5, 126} -- Dari Luck Rod ke Ares Rod (best)
-baitIDs = {3, 15} -- Dari Topwater ke Aether (best)
+baitIDs = {3, 8} -- Dari Topwater ke Aether (best)
 rodPrices = {[80]=50000, [255]=750000, [5]=1000000, [126]=2500000}
-baitPrices = {[3]=3000,[15]=1150000}
+baitPrices = {[3]=3000,[8]=630000}
 failedRodAttempts, failedBaitAttempts, rodFailedCounts, baitFailedCounts = {}, {}, {}, {}
 currentRodTarget, currentBaitTarget = nil, nil
 
