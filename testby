@@ -1342,6 +1342,7 @@ local rodNames = {
     [80] = "Midnight Rod",
     [6] = "Steampunk Rod",
     [7] = "Chrome Rod",
+    [255] = "Fluorescent Rod",
     [5] = "Astral Rod",
     [126] = "Ares Rod"
 }
@@ -2470,6 +2471,7 @@ local rodDelaySettings = {
     [80] = {fish = 4, catch = 1},      -- Midnight Rod
     [6] = {fish = 1, catch = 0.4},     -- Steampunk Rod
     [7] = {fish = 0.3, catch = 0.3},   -- Chrome Rod
+    [255] = {fish = 0.1, catch = 0.1}, -- Fluorescent Rod
     [5] = {fish = 0.1, catch = 0.1},   -- Astral Rod
     [126] = {fish = 0.1, catch = 0.1}  -- Ares Rod
 }
